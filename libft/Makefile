@@ -6,7 +6,7 @@
 #    By: yabakhar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/30 21:34:28 by yabakhar          #+#    #+#              #
-#    Updated: 2019/08/01 17:50:01 by yabakhar         ###   ########.fr        #
+#    Updated: 2019/10/10 22:30:22 by yoouali          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,7 +85,6 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME):$(OBJ) libft.h
-	@gcc $(FLG) -c $(SRC)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
 
