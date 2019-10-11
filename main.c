@@ -6,7 +6,7 @@
 /*   By: yoouali <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 10:53:10 by yoouali           #+#    #+#             */
-/*   Updated: 2019/10/11 09:40:01 by yoouali          ###   ########.fr       */
+/*   Updated: 2019/10/10 19:19:28 by yoouali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,6 @@ int		main(int ac, char **av)
 	i = opt_check(&opt, ac, av);
 	arg = arg_check(opt, ac, av, &i);
 	j = i > 1;
-	while (arg)
-	{
-		ft_putendl(arg->name);
-		arg = arg->next;
-	}
+	ft_ls(arg, opt, j);
 	return (0);
 }

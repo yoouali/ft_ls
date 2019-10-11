@@ -6,7 +6,7 @@
 /*   By: yoouali <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 20:25:58 by yoouali           #+#    #+#             */
-/*   Updated: 2019/10/11 11:17:11 by yoouali          ###   ########.fr       */
+/*   Updated: 2019/10/10 22:28:32 by yoouali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	check_n(t_arg *p, t_opt opt, int *ks)
 	}
 }
 
-void	sort_arg(t_arg *arg, t_opt opt, int kf)
+void	sort_arg(t_arg *arg, t_opt opt)
 {
 	t_arg	*p;
 	t_arg	*p2;
@@ -83,9 +83,9 @@ void	sort_arg(t_arg *arg, t_opt opt, int kf)
 			{
 				if (opt.t == 1)
 					check_t(p, opt, &ks);
-				else if (opt.t == 0 && opt.f == 0)
+				else if (opt.t == 0)
 					check_n(p, opt, &ks);
-				if (kf == 1 && p->form == 1 && p->next->form == 0)
+				if (p->form == 1 && p->next->form == 0)
 					swap_arg(p, p->next, &ks);
 				p = p->next;
 			}

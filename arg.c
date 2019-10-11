@@ -6,7 +6,7 @@
 /*   By: yoouali <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 11:50:17 by yoouali           #+#    #+#             */
-/*   Updated: 2019/10/11 11:16:29 by yoouali          ###   ########.fr       */
+/*   Updated: 2019/10/10 22:27:42 by yoouali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ t_arg	*arg_w_check(t_opt opt, int ac, char **av, int *index)
 		if (!(tmp->next = get_arg(av[i], opt)) ||\
 				!(tmp->next->name = ft_strdup(av[i])))
 			leak_arg(arg);
-		tmp->next->prev = tmp;
 		tmp = tmp->next;
 	}
 	return (arg);
@@ -59,7 +58,6 @@ t_arg	*arg_check(t_opt opt, int ac, char **av, int *index)
 {
 	int		i;
 	t_arg	*arg;
-	t_arg	*prev;
 
 	i = *index;
 	arg = NULL;
@@ -69,29 +67,12 @@ t_arg	*arg_check(t_opt opt, int ac, char **av, int *index)
 			leak_arg(arg);
 		if (!(arg->name = ft_strdup(".")))
 			leak_arg(arg);
+		arg->next = NULL;
 	}
 	else
 		arg = arg_w_check(opt, ac, av, index);
 	*index = ac - *index;
 	sort_err(&arg, opt.f);
-	sort_arg(arg, opt, 1);
-	while (arg)
-	{
-		ft_putstr(arg->name);
-		ft_putnbr(arg->form);
-		ft_putchar('\n');
-		if (arg->next == NULL)
-			prev = arg;
-		arg = arg->next;
-	}	
-	ft_putendl("<-------------------------------------------->");
-	while (prev)
-	{
-		ft_putstr(prev->name);
-		ft_putnbr(prev->form);
-		ft_putchar('\n');
-		prev = prev->prev;
-	}
-
+	sort_arg(arg, opt);
 	return (arg);
 }

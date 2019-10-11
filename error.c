@@ -6,7 +6,7 @@
 /*   By: yoouali <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 08:31:07 by yoouali           #+#    #+#             */
-/*   Updated: 2019/10/11 11:17:03 by yoouali          ###   ########.fr       */
+/*   Updated: 2019/10/10 22:27:52 by yoouali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ void	tmp_err(t_arg **tmp)
 		free(buf->error);
 		free(buf->name);
 		buf = buf->next;
-		if (buf)
-			buf->prev = err->prev;
 		free(err);
 		(*tmp)->next = buf;
 	}
@@ -43,7 +41,7 @@ void	sort_err(t_arg **arg, int f)
 	opt.t = 0;
 	opt.r = 0;
 	opt.f = f;
-	sort_arg(*arg, opt, 0);
+	sort_arg(*arg, opt);
 	tmp = *arg;
 	while (tmp)
 	{
@@ -54,8 +52,6 @@ void	sort_err(t_arg **arg, int f)
 			free((*arg)->name);
 			err = *arg;
 			*arg = (*arg)->next;
-			if (arg)
-				(*arg)->prev = err->prev;
 			free(err);
 			tmp = *arg;
 		}
