@@ -6,7 +6,7 @@
 /*   By: yoouali <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 12:07:10 by yoouali           #+#    #+#             */
-/*   Updated: 2019/10/10 19:20:00 by yoouali          ###   ########.fr       */
+/*   Updated: 2019/10/11 09:50:10 by yoouali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,8 @@ t_arg	*arg_dir(struct stat st, char *av, t_arg *arg, t_opt opt)
 		return (arg);
 	}
 	closedir(dir);
-	arg->error = NULL;
 	arg->form = 1;
 	arg->time = (opt.u == 0) ? st.st_mtime : st.st_atime;
-	arg->next = NULL;
 	return (arg);
 }
 
@@ -65,9 +63,7 @@ t_arg	*arg_lnk(struct stat st, char *av, t_opt opt, t_arg *arg)
 		arg->form = 1;
 		closedir(dir);
 	}
-	arg->error = NULL;
 	arg->time = (opt.u == 0) ? st.st_mtime : st.st_atime;
-	arg->next = NULL;
 	return (arg);
 }
 
@@ -93,9 +89,7 @@ t_arg	*get_arg(char *av, t_opt opt)
 		return (arg_lnk(st, av, opt, arg));
 	if (S_ISDIR(st.st_mode))
 		return (arg_dir(st, av, arg, opt));
-	arg->error = NULL;
 	arg->form = 0;
 	arg->time = (opt.u == 0) ? st.st_mtime : st.st_atime;
-	arg->next = NULL;
 	return (arg);
 }
